@@ -1,14 +1,33 @@
-import { CardLanguage } from "src/domain/entity/card.entity"
+import { PartialType } from "@nestjs/mapped-types"
+import { ApiProperty } from "@nestjs/swagger"
+import { IsBoolean, IsEnum, IsNotEmpty, IsNumber, IsString } from "class-validator"
 
-
-export class UpdateCardDto {
-
+enum CardLanguage {
+    'JAPONESE',
+    'ENGLISH',
+    'PORTUGUESE'
 }
 
 export class AddCardDto {
-    id?: string
+    @ApiProperty({ required: true })
+    @IsNotEmpty()
+    @IsString()
     name: string
+
+    @ApiProperty({ required: true })
+    @IsNotEmpty()
+    @IsEnum(CardLanguage)
     language: CardLanguage
+
+    @ApiProperty({ required: true })
+    @IsNotEmpty()
+    @IsBoolean()
     foil: boolean
+
+    @ApiProperty({ required: true })
+    @IsNotEmpty()
+    @IsNumber()
     priceBRL: number
 }
+
+export class UpdateCardDto extends PartialType(AddCardDto){}
