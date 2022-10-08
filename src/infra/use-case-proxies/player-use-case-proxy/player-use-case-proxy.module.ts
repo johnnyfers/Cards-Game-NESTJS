@@ -3,12 +3,12 @@ import { AddPlayerUseCase } from 'src/app/useCases/player/addPlayer.usecase';
 import { AuthPlayerUseCase } from 'src/app/useCases/player/authPlayer.usecase';
 import { AuthModule } from 'src/infra/auth/auth.module';
 import { JWTAuth } from 'src/infra/auth/jwt.auth';
-import { ExceptionsModule } from 'src/infra/exceptions/exceptions.module';
-import { ExceptionsService } from 'src/infra/exceptions/exceptions.service';
-import { LoggerModule } from 'src/infra/logger/logger.module';
-import { LoggerService } from 'src/infra/logger/logger.service';
-import { DatabasePlayerRepository } from 'src/infra/repositories/playerRepository.database';
-import { RepositoriesModule } from 'src/infra/repositories/repositories.module';
+import { ExceptionsModule } from 'src/infra/gateways/exceptions/exceptions.module';
+import { ExceptionsService } from 'src/infra/gateways/exceptions/exceptions.service';
+import { LoggerModule } from 'src/infra/gateways/logger/logger.module';
+import { LoggerService } from 'src/infra/gateways/logger/logger.service';
+import { DatabasePlayerRepository } from 'src/infra/gateways/repositories/playerRepository.database';
+import { RepositoriesModule } from 'src/infra/gateways/repositories/repositories.module';
 import { UseCaseProxy } from '../useCases-proxy';
 
 @Module({

@@ -5,7 +5,7 @@ import { CardPresenter } from 'src/app/presenters/card.presenter';
 import { PlayerPresenter } from 'src/app/presenters/player.presenter';
 import { AddPlayerUseCase } from 'src/app/useCases/player/addPlayer.usecase';
 import { IsPublic } from 'src/infra/auth/decorators/isPublic.decorator';
-import { ApiResponseType } from 'src/infra/common/swagger/response.decorator';
+import { ApiResponseType } from 'src/infra/gateways/common/swagger/response.decorator';
 import { PlayerUsecasesProxyModule } from 'src/infra/use-case-proxies/player-use-case-proxy/player-use-case-proxy.module';
 import { UseCaseProxy } from 'src/infra/use-case-proxies/useCases-proxy';
 

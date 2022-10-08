@@ -4,12 +4,12 @@ import { DeleteCardUseCases } from 'src/app/useCases/card/deleteCard.useCase';
 import { GetCardsUseCases } from 'src/app/useCases/card/getCards.useCase';
 import { UpdateCardUseCases } from 'src/app/useCases/card/updateCard.useCase';
 import { IException } from 'src/domain/abstraction/expections/exceptions.interface';
-import { ExceptionsModule } from 'src/infra/exceptions/exceptions.module';
-import { ExceptionsService } from 'src/infra/exceptions/exceptions.service';
-import { LoggerModule } from 'src/infra/logger/logger.module';
-import { LoggerService } from 'src/infra/logger/logger.service';
-import { RepositoriesModule } from 'src/infra/repositories/repositories.module';
-import { DatabaseCardRepository } from 'src/infra/repositories/cardRepository.database';
+import { ExceptionsModule } from 'src/infra/gateways/exceptions/exceptions.module';
+import { ExceptionsService } from 'src/infra/gateways/exceptions/exceptions.service';
+import { LoggerModule } from 'src/infra/gateways/logger/logger.module';
+import { LoggerService } from 'src/infra/gateways/logger/logger.service';
+import { RepositoriesModule } from 'src/infra/gateways/repositories/repositories.module';
+import { DatabaseCardRepository } from 'src/infra/gateways/repositories/cardRepository.database';
 import { UseCaseProxy } from '../useCases-proxy';
 
 @Module({

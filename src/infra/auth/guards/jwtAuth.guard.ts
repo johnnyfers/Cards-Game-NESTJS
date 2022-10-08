@@ -2,7 +2,7 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AuthGuard } from '@nestjs/passport';
-import { ExceptionsService } from 'src/infra/exceptions/exceptions.service';
+import { ExceptionsService } from 'src/infra/gateways/exceptions/exceptions.service';
 
 import { IS_PUBLIC_KEY } from '../decorators/isPublic.decorator';
 
