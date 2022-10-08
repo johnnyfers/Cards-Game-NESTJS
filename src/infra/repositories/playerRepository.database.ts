@@ -20,7 +20,9 @@ export class DatabasePlayerRepository implements PlayerRepository {
 
     async insert(player: Player): Promise<void> {
         await this.prisma.player.create({
-            ...player.getProps()
+            data: {
+                ...player.getProps()
+            }
         })
     }
 }

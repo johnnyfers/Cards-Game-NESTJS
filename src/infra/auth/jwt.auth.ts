@@ -1,0 +1,16 @@
+import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { TokenGenerator } from 'src/domain/auth/tokenGenerator.interface';
+import { UserPayload } from 'src/domain/auth/UserPayload.interface';
+
+@Injectable()
+export class JWTAuth implements TokenGenerator {
+  constructor(private readonly jwtService: JwtService) {}
+  getToken(subject: UserPayload): string {
+    return this.jwtService.sign(subject);
+  }
+
+  getRefreshToken(email: string, subject: string): string {
+    return this.jwtService.sign({ sub: subject, email });
+  }
+}

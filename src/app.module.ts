@@ -6,6 +6,9 @@ import { PrismaService } from './infra/prisma/prisma-service/prisma-service.serv
 import { CardUsecasesProxyModule } from './infra/use-case-proxies/card-use-case-proxy/card-use-case-proxy.module';
 import { PrismaServiceModule } from './infra/prisma/prisma-service/prisma-service.module';
 import { RepositoriesModule } from './infra/repositories/repositories.module';
+import { AuthModule } from './infra/auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './infra/auth/guards/jwtAuth.guard';
 
 @Module({
   imports: [
@@ -15,9 +18,15 @@ import { RepositoriesModule } from './infra/repositories/repositories.module';
     ControllersModule,
     PrismaServiceModule,
     RepositoriesModule,
+    AuthModule
   ],
   controllers: [],
-  providers: [PrismaService]
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+    PrismaService]
 })
 
 export class AppModule { }

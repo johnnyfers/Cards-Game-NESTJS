@@ -14,7 +14,7 @@ export class CardPresenter {
   @ApiProperty()
   foil: boolean;
   @ApiProperty()
-  language: CardLanguage;
+  language: CardLanguage | string;
   @ApiProperty()
   playerId: string;
   @ApiProperty()

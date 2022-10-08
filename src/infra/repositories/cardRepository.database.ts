@@ -11,8 +11,21 @@ export class DatabaseCardRepository implements CardRepository {
   ) { }
 
   async insert(card: Card): Promise<void> {
+    const cProps = card.getProps()
     await this.prisma.card.create({
-      ...card.getProps()
+      data: {
+        id: cProps?.id,
+        foil: cProps.foil,
+        language: cProps.language,
+        name: cProps.name,
+        priceBRL: cProps.priceBRL,
+        similarCardsAmount: cProps.similarCardsAmount,
+        player: {
+          connect: {
+            id: cProps.playerId
+          }
+        }
+      }
     })
   }
 
@@ -25,14 +38,22 @@ export class DatabaseCardRepository implements CardRepository {
     const card = await this.prisma.card.findUnique({
       where: { id }
     })
+    if (!card) return
     return new Card(card)
   }
 
   async updateContent(id: string, card: Card): Promise<void> {
+    const cProps = card.getProps()
+
     await this.prisma.card.update({
       where: { id: id },
-      data: { 
-        ...card.getProps() }
+      data: {
+        foil: cProps.foil,
+        language: cProps.language,
+        name: cProps.name,
+        priceBRL: cProps.priceBRL,
+        similarCardsAmount: cProps.similarCardsAmount
+      }
     })
   }
 

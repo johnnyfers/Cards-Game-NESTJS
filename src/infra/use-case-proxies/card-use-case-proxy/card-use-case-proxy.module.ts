@@ -18,7 +18,7 @@ import { UseCaseProxy } from '../useCases-proxy';
 })
 export class CardUsecasesProxyModule {
   static GET_CARD_USECASES_PROXY = 'getCardUsecasesProxy';
-  static GET_CARD_USECASES_PROXY = 'getCardsUsecasesProxy';
+  static GET_CARDS_USECASES_PROXY = 'getCardsUsecasesProxy';
   static POST_CARD_USECASES_PROXY = 'postCardUsecasesProxy';
   static DELETE_CARD_USECASES_PROXY = 'deleteCardUsecasesProxy';
   static PUT_CARD_USECASES_PROXY = 'putCardUsecasesProxy';
@@ -34,7 +34,7 @@ export class CardUsecasesProxyModule {
         },
         {
           inject: [DatabaseCardRepository],
-          provide: CardUsecasesProxyModule.GET_CARD_USECASES_PROXY,
+          provide: CardUsecasesProxyModule.GET_CARDS_USECASES_PROXY,
           useFactory: (cardRepository: DatabaseCardRepository) =>
             new UseCaseProxy(new GetCardsUseCases(cardRepository)),
         },
@@ -59,7 +59,7 @@ export class CardUsecasesProxyModule {
       ],
       exports: [
         CardUsecasesProxyModule.GET_CARD_USECASES_PROXY,
-        CardUsecasesProxyModule.GET_CARD_USECASES_PROXY,
+        CardUsecasesProxyModule.GET_CARDS_USECASES_PROXY,
         CardUsecasesProxyModule.POST_CARD_USECASES_PROXY,
         CardUsecasesProxyModule.PUT_CARD_USECASES_PROXY,
         CardUsecasesProxyModule.DELETE_CARD_USECASES_PROXY,
