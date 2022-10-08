@@ -1,0 +1,27 @@
+import { Body, Controller,Inject, Post } from '@nestjs/common';
+import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { AddPlayerDto } from 'src/app/dto/player.dto';
+import { CardPresenter } from 'src/app/presenters/card.presenter';
+import { PlayerPresenter } from 'src/app/presenters/player.presenter';
+import { AddPlayerUseCase } from 'src/app/useCases/player/addPlayer.usecase';
+import { ApiResponseType } from 'src/infra/common/swagger/response.decorator';
+import { PlayerUsecasesProxyModule } from 'src/infra/use-case-proxies/player-use-case-proxy/player-use-case-proxy.module';
+import { UseCaseProxy } from 'src/infra/use-case-proxies/useCases-proxy';
+
+@Controller('player')
+@ApiTags('player')
+@ApiResponse({ status: 500, description: 'Internal error' })
+@ApiExtraModels(PlayerPresenter)
+export class AddPlayerController {
+  constructor(
+    @Inject(PlayerUsecasesProxyModule.POST_PLAYER_USECASES_PROXY)
+    private readonly addPlayerUsecaseProxy: UseCaseProxy<AddPlayerUseCase>,
+  ) {}
+
+  @Post('create')
+  @ApiResponseType(CardPresenter, true)
+  async addCard(@Body() addPlayerDto: AddPlayerDto) {
+    const cardCreated = await this.addPlayerUsecaseProxy.getInstance().execute(addPlayerDto);
+    return new PlayerPresenter(cardCreated);
+  }
+}

@@ -4,7 +4,7 @@ import { PlayerRepository } from "src/domain/repositories/playerRepository.inter
 import { PrismaService } from "../prisma/prisma-service/prisma-service.service";
 
 @Injectable()
-export class PlayerRepositoryDatabase implements PlayerRepository {
+export class DatabasePlayerRepository implements PlayerRepository {
     constructor(
         private prisma: PrismaService
     ) { }
