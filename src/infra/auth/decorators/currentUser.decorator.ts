@@ -1,5 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { AuthRequest } from 'src/domain/auth/AuthRequest.interface';
+import { AuthRequest } from 'src/domain/abstraction/auth/AuthRequest.interface';
 import { Player } from 'src/domain/entity/player.entity';
 
 

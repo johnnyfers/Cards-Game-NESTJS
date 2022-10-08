@@ -6,10 +6,10 @@ export type CardLanguage = 'JAPANESE' | 'ENGLISH' | 'PORTUGUESE'
 export interface CardProps {
   id?: string
   name: string
+  edition: string
   language: CardLanguage | string
   foil: boolean
   priceBRL: number
-  similarCardsAmount?: number
 
   playerId: string
   player?: PlayerProps

@@ -1,7 +1,7 @@
 import { CardDto } from "src/app/dto/card.dto";
 import { Card } from "src/domain/entity/card.entity";
-import { ILogger } from "src/domain/logger/logger.interface";
-import { CardRepository } from "src/domain/repositories/cardRepository.interface";
+import { ILogger } from "src/domain/abstraction/logger/logger.interface";
+import { CardRepository } from "src/domain/abstraction/repositories/cardRepository.interface";
 
 export class AddCardUseCases {
     constructor(
@@ -10,7 +10,7 @@ export class AddCardUseCases {
     ) { }
 
     async execute(addCardDto: CardDto, playerId: string): Promise<Card> {
-        const card = new Card({...addCardDto, playerId, similarCardsAmount: 5})
+        const card = new Card({...addCardDto, playerId})
         await this.cardRepository.insert(card)
         this.logger.log('addCardUseCases execute', `New card have been inserted -- id ${card.getProps().id}`);
         return card

@@ -1,8 +1,8 @@
 import { AddPlayerDto } from "src/app/dto/player.dto";
 import { Player } from "src/domain/entity/player.entity";
-import { IException } from "src/domain/expections/exceptions.interface";
-import { ILogger } from "src/domain/logger/logger.interface";
-import { PlayerRepository } from "src/domain/repositories/playerRepository.interface";
+import { IException } from "src/domain/abstraction/expections/exceptions.interface";
+import { ILogger } from "src/domain/abstraction/logger/logger.interface";
+import { PlayerRepository } from "src/domain/abstraction/repositories/playerRepository.interface";
 
 export class AddPlayerUseCase {
     constructor(

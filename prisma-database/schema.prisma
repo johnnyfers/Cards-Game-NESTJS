@@ -18,12 +18,12 @@ model Player {
 }
 
 model Card {
-  id                 String       @id @default(uuid())
+  id                 String  @id @default(uuid())
   name               String
+  edition            String 
   foil               Boolean
   priceBRL           Float
-  similarCardsAmount Int
   language           String
   playerId           String
-  player             Player?      @relation(fields: [playerId], references: [id])
+  player             Player? @relation(fields: [playerId], references: [id])
 }

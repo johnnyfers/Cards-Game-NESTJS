@@ -1,6 +1,6 @@
-import { IException } from "src/domain/expections/exceptions.interface";
-import { ILogger } from "src/domain/logger/logger.interface";
-import { CardRepository } from "src/domain/repositories/cardRepository.interface";
+import { IException } from "src/domain/abstraction/expections/exceptions.interface";
+import { ILogger } from "src/domain/abstraction/logger/logger.interface";
+import { CardRepository } from "src/domain/abstraction/repositories/cardRepository.interface";
 
 
 export class DeleteCardUseCases {

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { CardRepository } from 'src/domain/abstraction/repositories/cardRepository.interface';
 import { Card } from 'src/domain/entity/card.entity';
-import { CardRepository } from '../../domain/repositories/cardRepository.interface';
 import { PrismaService } from '../prisma/prisma-service/prisma-service.service';
 
 @Injectable()
@@ -15,11 +15,11 @@ export class DatabaseCardRepository implements CardRepository {
     await this.prisma.card.create({
       data: {
         id: cProps?.id,
+        edition: cProps.edition,
         foil: cProps.foil,
         language: cProps.language,
         name: cProps.name,
         priceBRL: cProps.priceBRL,
-        similarCardsAmount: cProps.similarCardsAmount,
         player: {
           connect: {
             id: cProps.playerId
@@ -29,8 +29,16 @@ export class DatabaseCardRepository implements CardRepository {
     })
   }
 
-  async findAll(): Promise<Card[]> {
-    const cards = await this.prisma.card.findMany()
+  async findPlayerCards(playerId: string, name?: string): Promise<Card[]> {
+    const cards = await this.prisma.card.findMany({
+      where: {
+        playerId,
+        name
+      },
+      orderBy: {
+        priceBRL: 'desc'
+      }
+    })
     if (!cards) return
     return cards.map(card => new Card(card))
   }
@@ -49,16 +57,30 @@ export class DatabaseCardRepository implements CardRepository {
     await this.prisma.card.update({
       where: { id: id },
       data: {
+        edition: cProps.edition,
         foil: cProps.foil,
         language: cProps.language,
         name: cProps.name,
         priceBRL: cProps.priceBRL,
-        similarCardsAmount: cProps.similarCardsAmount
       }
     })
   }
 
   async deleteById(id: string): Promise<void> {
     await this.prisma.card.delete({ where: { id } })
+  }
+
+  async playerSimilarCards(card: Card): Promise<number> {
+    const cProps = card.getProps()
+
+    const similarCards = await this.prisma.card.count({
+      where:{
+        foil: cProps.foil,
+        edition: cProps.edition,
+        language: cProps.language,
+        priceBRL: cProps.priceBRL,
+      }
+    }) 
+    return
   }
 }

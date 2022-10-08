@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { TokenGenerator } from 'src/domain/auth/tokenGenerator.interface';
-import { UserPayload } from 'src/domain/auth/UserPayload.interface';
+import { TokenGenerator } from 'src/domain/abstraction/auth/tokenGenerator.interface';
+import { UserPayload } from 'src/domain/abstraction/auth/UserPayload.interface';
 
 @Injectable()
 export class JWTAuth implements TokenGenerator {

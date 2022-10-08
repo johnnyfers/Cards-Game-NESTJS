@@ -1,5 +1,5 @@
 import { Card } from "src/domain/entity/card.entity";
-import { CardRepository } from "src/domain/repositories/cardRepository.interface";
+import { CardRepository } from "src/domain/abstraction/repositories/cardRepository.interface";
 
 
 export class GetCardsUseCases {
@@ -7,8 +7,8 @@ export class GetCardsUseCases {
         private readonly cardRepository: CardRepository
     ) { }
 
-    async execute(): Promise<Card[]> {
-        const cards = await this.cardRepository.findAll()
+    async execute(name: string, playerId: string): Promise<Card[]> {
+        const cards = await this.cardRepository.findPlayerCards(playerId, name);
         return cards
     }
 }

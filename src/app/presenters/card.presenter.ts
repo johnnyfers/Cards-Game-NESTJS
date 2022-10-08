@@ -10,8 +10,6 @@ export class CardPresenter {
   @ApiProperty()
   priceBRL: number;
   @ApiProperty()
-  similarCardsAmount: number;
-  @ApiProperty()
   foil: boolean;
   @ApiProperty()
   language: CardLanguage | string;
@@ -28,7 +26,6 @@ export class CardPresenter {
     this.name = cardProps.name
     this.language = cardProps.language
     this.priceBRL = cardProps.priceBRL
-    this.similarCardsAmount = cardProps?.similarCardsAmount
     
     this.playerId = cardProps.playerId
     this.player = cardProps?.player

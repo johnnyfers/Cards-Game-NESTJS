@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
+import { PlayerRepository } from "src/domain/abstraction/repositories/playerRepository.interface";
 import { Player } from "src/domain/entity/player.entity";
-import { PlayerRepository } from "src/domain/repositories/playerRepository.interface";
 import { PrismaService } from "../prisma/prisma-service/prisma-service.service";
 
 @Injectable()

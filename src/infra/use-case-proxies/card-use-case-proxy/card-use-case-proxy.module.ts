@@ -1,10 +1,9 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { AddCardUseCases } from 'src/app/useCases/card/addCard.useCase';
 import { DeleteCardUseCases } from 'src/app/useCases/card/deleteCard.useCase';
-import { GetCardUseCases } from 'src/app/useCases/card/getCard.useCase';
 import { GetCardsUseCases } from 'src/app/useCases/card/getCards.useCase';
 import { UpdateCardUseCases } from 'src/app/useCases/card/updateCard.useCase';
-import { IException } from 'src/domain/expections/exceptions.interface';
+import { IException } from 'src/domain/abstraction/expections/exceptions.interface';
 import { ExceptionsModule } from 'src/infra/exceptions/exceptions.module';
 import { ExceptionsService } from 'src/infra/exceptions/exceptions.service';
 import { LoggerModule } from 'src/infra/logger/logger.module';
@@ -17,7 +16,6 @@ import { UseCaseProxy } from '../useCases-proxy';
   imports: [LoggerModule, RepositoriesModule, ExceptionsModule],
 })
 export class CardUsecasesProxyModule {
-  static GET_CARD_USECASES_PROXY = 'getCardUsecasesProxy';
   static GET_CARDS_USECASES_PROXY = 'getCardsUsecasesProxy';
   static POST_CARD_USECASES_PROXY = 'postCardUsecasesProxy';
   static DELETE_CARD_USECASES_PROXY = 'deleteCardUsecasesProxy';
@@ -27,11 +25,6 @@ export class CardUsecasesProxyModule {
     return {
       module: CardUsecasesProxyModule,
       providers: [
-        {
-          inject: [ExceptionsService,DatabaseCardRepository],
-          provide: CardUsecasesProxyModule.GET_CARD_USECASES_PROXY,
-          useFactory: (exception: IException, cardRepository: DatabaseCardRepository) => new UseCaseProxy(new GetCardUseCases(exception,cardRepository)),
-        },
         {
           inject: [DatabaseCardRepository],
           provide: CardUsecasesProxyModule.GET_CARDS_USECASES_PROXY,
@@ -58,7 +51,6 @@ export class CardUsecasesProxyModule {
         },
       ],
       exports: [
-        CardUsecasesProxyModule.GET_CARD_USECASES_PROXY,
         CardUsecasesProxyModule.GET_CARDS_USECASES_PROXY,
         CardUsecasesProxyModule.POST_CARD_USECASES_PROXY,
         CardUsecasesProxyModule.PUT_CARD_USECASES_PROXY,

@@ -3,7 +3,7 @@ import { ApiExtraModels, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { CardDto } from "src/app/dto/card.dto";
 import { CardPresenter } from "src/app/presenters/card.presenter";
 import { AddCardUseCases } from "src/app/useCases/card/addCard.useCase";
-import { UserFromJwt } from "src/domain/auth/UserFromJwt.interface";
+import { UserFromJwt } from "src/domain/abstraction/auth/UserFromJwt.interface";
 import { CurrentUser } from "src/infra/auth/decorators/currentUser.decorator";
 import { ApiResponseType } from "src/infra/common/swagger/response.decorator";
 import { CardUsecasesProxyModule } from "src/infra/use-case-proxies/card-use-case-proxy/card-use-case-proxy.module";
@@ -23,8 +23,8 @@ export class AddCardController {
   @ApiResponseType(CardPresenter, true)
   async addCard(
     @CurrentUser('player') player: UserFromJwt,
-    @Body() { foil, language, name, priceBRL }: CardDto) {
-    const cardCreated = await this.addCardUsecaseProxy.getInstance().execute({ foil, language, name, priceBRL }, player.id);
+    @Body() { foil, language, name, priceBRL, edition }: CardDto) {
+    const cardCreated = await this.addCardUsecaseProxy.getInstance().execute({ foil, language, name, edition, priceBRL }, player.id);
     return new CardPresenter(cardCreated);
   }
 }

@@ -9,9 +9,9 @@ CREATE TABLE "Player" (
 CREATE TABLE "Card" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
+    "edition" TEXT NOT NULL,
     "foil" BOOLEAN NOT NULL,
     "priceBRL" REAL NOT NULL,
-    "similarCardsAmount" INTEGER NOT NULL,
     "language" TEXT NOT NULL,
     "playerId" TEXT NOT NULL,
     CONSTRAINT "Card_playerId_fkey" FOREIGN KEY ("playerId") REFERENCES "Player" ("id") ON DELETE RESTRICT ON UPDATE CASCADE

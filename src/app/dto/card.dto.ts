@@ -17,6 +17,11 @@ export class CardDto {
 
     @ApiProperty({ required: true })
     @IsNotEmpty()
+    @IsString()
+    edition: string
+
+    @ApiProperty({ required: true })
+    @IsNotEmpty()
     @IsEnum(CardLanguageEnum)
     language: CardLanguage | string
 
