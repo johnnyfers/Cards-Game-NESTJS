@@ -1,4 +1,4 @@
-import { UpdateCardDto } from "src/app/dto/card.dto";
+import { PartialCardDto } from "src/app/dto/card.dto";
 import { Card } from "src/domain/entity/card.entity";
 import { IException } from "src/domain/expections/exceptions.interface";
 import { ILogger } from "src/domain/logger/logger.interface";
@@ -11,12 +11,20 @@ export class UpdateCardUseCases {
         private readonly cardRepository: CardRepository
     ) { }
 
-    async execute(updateCardDto: UpdateCardDto, id: string): Promise<void> {
+    async execute(updateCardDto: PartialCardDto, id: string, playerId: string): Promise<void> {
         const card = await this.cardRepository.findById(id)
         if (!card) throw this.exception.badRequestException({
             message: 'Card not found',
-            code_error: 404
         })
+        if (!card) {
+            throw this.exception.badRequestException({
+                message: "Card not found"
+            })
+        }
+        const { playerId: cardPlayerId } = card.getProps()
+        if (cardPlayerId !== playerId) {
+            throw this.exception.forbiddenException()
+        }
         const newCard = new Card({
             ...card.getProps(),
             ...updateCardDto

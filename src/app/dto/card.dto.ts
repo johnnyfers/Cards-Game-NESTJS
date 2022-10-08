@@ -9,7 +9,7 @@ enum CardLanguageEnum {
     'PORTUGUESE'
 }
 
-export class AddCardDto {
+export class CardDto {
     @ApiProperty({ required: true })
     @IsNotEmpty()
     @IsString()
@@ -18,7 +18,7 @@ export class AddCardDto {
     @ApiProperty({ required: true })
     @IsNotEmpty()
     @IsEnum(CardLanguageEnum)
-    language: CardLanguage
+    language: CardLanguage | string
 
     @ApiProperty({ required: true })
     @IsNotEmpty()
@@ -31,4 +31,4 @@ export class AddCardDto {
     priceBRL: number
 }
 
-export class UpdateCardDto extends PartialType(AddCardDto){}
+export class PartialCardDto extends PartialType(CardDto){}

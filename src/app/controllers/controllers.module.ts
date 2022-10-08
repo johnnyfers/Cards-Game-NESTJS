@@ -7,6 +7,7 @@ import { GetCardController } from './card/getCard.controller';
 import { GetCardsController } from './card/getCards.controller';
 import { UpdateCardController } from './card/updateCard.controller';
 import { AddPlayerController } from './player/addPlayer.controller';
+import { AuthPlayerController } from './player/authPlayer.controller';
 
 
 @Module({
@@ -20,7 +21,8 @@ import { AddPlayerController } from './player/addPlayer.controller';
     GetCardsController,
     UpdateCardController,
     DeleteCardController,
-    AddCardController
+    AddCardController,
+    AuthPlayerController
   ],
 })
 export class ControllersModule {}

@@ -2,6 +2,8 @@ import { Controller, Delete, Inject, Query } from "@nestjs/common";
 import { ApiExtraModels, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { CardPresenter } from "src/app/presenters/card.presenter";
 import { DeleteCardUseCases } from "src/app/useCases/card/deleteCard.useCase";
+import { UserFromJwt } from "src/domain/auth/UserFromJwt.interface";
+import { CurrentUser } from "src/infra/auth/decorators/currentUser.decorator";
 import { ApiResponseType } from "src/infra/common/swagger/response.decorator";
 import { CardUsecasesProxyModule } from "src/infra/use-case-proxies/card-use-case-proxy/card-use-case-proxy.module";
 import { UseCaseProxy } from "src/infra/use-case-proxies/useCases-proxy";
@@ -18,8 +20,10 @@ export class DeleteCardController {
 
     @Delete('delete')
     @ApiResponseType(CardPresenter, true)
-    async deleteCard(@Query('id') id: string) {
-        await this.deleteCardUsecaseProxy.getInstance().execute(id);
+    async deleteCard(
+        @CurrentUser('player') player: UserFromJwt,
+        @Query('id') id: string) {
+        await this.deleteCardUsecaseProxy.getInstance().execute(id, player.id);
         return 'success';
     }
 }

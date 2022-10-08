@@ -28,9 +28,9 @@ export class CardUsecasesProxyModule {
       module: CardUsecasesProxyModule,
       providers: [
         {
-          inject: [DatabaseCardRepository],
+          inject: [ExceptionsService,DatabaseCardRepository],
           provide: CardUsecasesProxyModule.GET_CARD_USECASES_PROXY,
-          useFactory: (cardRepository: DatabaseCardRepository) => new UseCaseProxy(new GetCardUseCases(cardRepository)),
+          useFactory: (exception: IException, cardRepository: DatabaseCardRepository) => new UseCaseProxy(new GetCardUseCases(exception,cardRepository)),
         },
         {
           inject: [DatabaseCardRepository],
@@ -51,10 +51,10 @@ export class CardUsecasesProxyModule {
             new UseCaseProxy(new UpdateCardUseCases(exception, logger, cardRepository)),
         },
         {
-          inject: [LoggerService, DatabaseCardRepository],
+          inject: [ExceptionsService,LoggerService, DatabaseCardRepository],
           provide: CardUsecasesProxyModule.DELETE_CARD_USECASES_PROXY,
-          useFactory: (logger: LoggerService, cardRepository: DatabaseCardRepository) =>
-            new UseCaseProxy(new DeleteCardUseCases(logger, cardRepository)),
+          useFactory: (exception: IException,logger: LoggerService, cardRepository: DatabaseCardRepository) =>
+            new UseCaseProxy(new DeleteCardUseCases(logger, exception, cardRepository)),
         },
       ],
       exports: [

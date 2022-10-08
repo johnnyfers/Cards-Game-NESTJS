@@ -9,8 +9,4 @@ export class JWTAuth implements TokenGenerator {
   getToken(subject: UserPayload): string {
     return this.jwtService.sign(subject);
   }
-
-  getRefreshToken(email: string, subject: string): string {
-    return this.jwtService.sign({ sub: subject, email });
-  }
 }
