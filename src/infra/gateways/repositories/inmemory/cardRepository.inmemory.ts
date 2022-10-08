@@ -9,23 +9,34 @@ export class InMemoryCardRepository implements CardRepository {
   }
 
   async insert(card: Card): Promise<void> {
-    throw new Error("Method not implemented.");
+    this.cards.push(card)
   }
 
   async findPlayerCards(playerId: string, name?: string): Promise<Card[]> {
-    throw new Error("Method not implemented.");
+    let playerCards = this.cards.filter(c => c.getProps().playerId === playerId)
+    if (!playerCards.length) return
+    if (name) {
+      playerCards = this.cards.filter(c => c.getProps().name === name)
+    }
+
+    return this.sortCardsHelper(playerCards)
   }
 
   async findById(id: string): Promise<Card> {
-    throw new Error("Method not implemented.");
+    return this.cards.find(c => c.getProps().id === id)
   }
   async updateContent(id: string, card: Card): Promise<void> {
-    throw new Error("Method not implemented.");
+    this.cards = this.cards.map(c => {
+      if (c.getProps().id !== id) return c
+      return card
+    })
   }
 
   async deleteById(id: string): Promise<void> {
-    throw new Error("Method not implemented.");
+    this.cards = this.cards.filter(c => c.getProps().id !== id)
   }
 
-
+  private sortCardsHelper(card: Card []) {
+    return card.sort((a,b)=> b.getProps().priceBRL - a.getProps().priceBRL)
+  }
 }

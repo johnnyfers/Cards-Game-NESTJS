@@ -18,7 +18,7 @@ describe('AddPlayerUseCase', () => {
     })
 
     it('should be able to create a player', async () => {
-        const payload ={
+        const payload = {
             username: "new player",
             password: "new player"
         }
@@ -31,14 +31,14 @@ describe('AddPlayerUseCase', () => {
 
     it('should throw n error if username already exists', async () => {
         await playerRepository.insert(playerMocked)
-        const payload ={
+        const payload = {
             username: playerMocked.getProps().username,
             password: "new player"
         }
         expect(() => {
-            return addPlayerUseCase.execute(payload) 
+            return addPlayerUseCase.execute(payload)
         })
-        .rejects
-        .toThrowError('Username already used')
+            .rejects
+            .toThrowError('Username already used')
     })
 })
