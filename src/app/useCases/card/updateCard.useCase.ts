@@ -11,7 +11,7 @@ export class UpdateCardUseCases {
     private readonly logger: ILogger,
     private readonly cardRepository: CardRepository,
     private readonly translationAPI: TranslationAPI,
-  ) {}
+  ) { }
 
   async execute(
     updateCardDto: PartialCardDto,
@@ -19,26 +19,14 @@ export class UpdateCardUseCases {
     playerId: string,
   ): Promise<void> {
     const card = await this.cardRepository.findById(id);
-    if (!card)
-      throw this.exception.badRequestException({
-        message: 'Card not found',
-      });
-    if (!card) {
-      throw this.exception.badRequestException({
-        message: 'Card not found',
-      });
-    }
-    const { playerId: cardPlayerId } = card.getProps();
-    if (cardPlayerId !== playerId) {
-      throw this.exception.forbiddenException();
-    }
-    let translatedName: string = updateCardDto?.name;
-    if (updateCardDto?.name)
+    this.cardInvariant(card, playerId)
+    let translatedName: string = card.getProps().name;
+    if (updateCardDto?.name) {
       translatedName = await this.translationAPI.translate(
         updateCardDto.name,
         'pt',
       );
-
+    }
     const newCard = new Card({
       ...card.getProps(),
       ...updateCardDto,
@@ -49,5 +37,18 @@ export class UpdateCardUseCases {
       'updateCardUseCases execute',
       `Card ${id} have been updated`,
     );
+  }
+
+  cardInvariant(card: Card, playerId: string): void {
+    if (!card)
+      throw this.exception.badRequestException({
+        message: 'Card not found',
+      });
+    const { playerId: cardPlayerId } = card.getProps();
+    if (cardPlayerId !== playerId) {
+      throw this.exception.forbiddenException({
+        message: 'You cant see this card'
+      });
+    }
   }
 }

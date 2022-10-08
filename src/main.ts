@@ -22,7 +22,7 @@ async function bootstrap() {
   if (env !== 'production') {
     const config = new DocumentBuilder()
       .addBearerAuth()
-      .setTitle('Clean Architecture Nestjs')
+      .setTitle('Cards Nestjs')
       .setDescription('Example with card list')
       .setVersion('1.0')
       .build();

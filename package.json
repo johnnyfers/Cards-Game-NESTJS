@@ -80,14 +80,23 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
-    "testRegex": ".*\\.spec\\.ts$",
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "rootDir": "./",
+    "modulePaths": [
+      "<rootDir>"
+    ],
+    "testRegex": ".spec.ts$",
+    "collectCoverageFrom": [
+      "src/**/*.usecase.{js,jsx,ts,tsx}",
+      "src/domain/**/*.inmemory.{js,jsx,ts,tsx}",
+      "src/**/*.inmemory.{js,jsx,ts,tsx}"
+    ],
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   }

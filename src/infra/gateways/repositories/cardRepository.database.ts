@@ -66,18 +66,4 @@ export class DatabaseCardRepository implements CardRepository {
   async deleteById(id: string): Promise<void> {
     await this.prisma.card.delete({ where: { id } });
   }
-
-  async playerSimilarCards(card: Card): Promise<number> {
-    const cProps = card.getProps();
-
-    const similarCards = await this.prisma.card.count({
-      where: {
-        foil: cProps.foil,
-        edition: cProps.edition,
-        language: cProps.language,
-        priceBRL: cProps.priceBRL,
-      },
-    });
-    return;
-  }
 }

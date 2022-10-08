@@ -44,4 +44,4 @@ $ yarn test:unit
 - GET :: card/list [List all player's cards/List all player's cards by given name]
 
 
-- Access http://localhost:3000/api/#/ for complete overview
+- Access http://localhost:3000/api/#/ for a complete overview
