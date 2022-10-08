@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto';
-import { Card, CardProps } from './card.entity';
+import { CardProps } from './card.entity';
 
 export interface PlayerProps {
   id?: string;
@@ -11,7 +11,7 @@ export interface PlayerProps {
 
 export class Player {
   constructor(private props: PlayerProps) {
-    if (!props.id) randomUUID();
+    if (!props?.id) props.id = randomUUID();
     this.props = props;
   }
 

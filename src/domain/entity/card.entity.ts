@@ -17,7 +17,7 @@ export interface CardProps {
 
 export class Card {
   constructor(private props: CardProps) {
-    if (!props.id) randomUUID();
+    if (!props?.id) props.id = randomUUID();
     this.props = props;
   }
 
