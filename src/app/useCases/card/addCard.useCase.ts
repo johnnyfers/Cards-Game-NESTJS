@@ -10,7 +10,7 @@ export class AddCardUseCases {
     ) { }
 
     async execute(addCardDto: CardDto, playerId: string): Promise<Card> {
-        const card = new Card({...addCardDto, playerId})
+        const card = new Card({...addCardDto, playerId, similarCardsAmount: 5})
         await this.cardRepository.insert(card)
         this.logger.log('addCardUseCases execute', `New card have been inserted -- id ${card.getProps().id}`);
         return card

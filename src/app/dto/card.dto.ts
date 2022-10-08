@@ -4,7 +4,7 @@ import { IsBoolean, IsEnum, IsNotEmpty, IsNumber, IsString } from "class-validat
 import { CardLanguage } from "src/domain/entity/card.entity"
 
 enum CardLanguageEnum {
-    'JAPONESE',
+    'JAPANESE',
     'ENGLISH',
     'PORTUGUESE'
 }

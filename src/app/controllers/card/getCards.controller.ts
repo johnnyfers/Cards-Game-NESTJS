@@ -12,7 +12,7 @@ import { UseCaseProxy } from "src/infra/use-case-proxies/useCases-proxy";
 @ApiExtraModels(CardPresenter)
 export class GetCardsController {
   constructor(
-    @Inject(CardUsecasesProxyModule.GET_CARD_USECASES_PROXY)
+    @Inject(CardUsecasesProxyModule.GET_CARDS_USECASES_PROXY)
     private readonly getAllCardUsecaseProxy: UseCaseProxy<GetCardsUseCases>,
   ) {}
 

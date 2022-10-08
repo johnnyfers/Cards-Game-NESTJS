@@ -16,7 +16,6 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new LoggingInterceptor(new LoggerService()));
   app.useGlobalInterceptors(new ResponseInterceptor());
-  app.setGlobalPrefix('api_v1');
 
   if (env !== 'production') {
     const config = new DocumentBuilder()

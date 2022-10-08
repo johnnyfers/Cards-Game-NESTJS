@@ -1,7 +1,7 @@
 import { randomUUID } from "crypto"
 import { PlayerProps } from "./player.entity"
 
-export type CardLanguage = 'JAPONESE' | 'ENGLISH' | 'PORTUGUESE'
+export type CardLanguage = 'JAPANESE' | 'ENGLISH' | 'PORTUGUESE'
 
 export interface CardProps {
   id?: string

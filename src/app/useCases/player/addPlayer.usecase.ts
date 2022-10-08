@@ -13,7 +13,7 @@ export class AddPlayerUseCase {
 
     async execute(addPlayerDto: AddPlayerDto): Promise<Player> {
         const playerExists = await this.playerRepository.findByUsername(addPlayerDto.username);
-        if (!playerExists) throw this.exceptions.badRequestException({
+        if (playerExists) throw this.exceptions.badRequestException({
             message: 'Username already used',
         })
         const player = new Player(addPlayerDto)

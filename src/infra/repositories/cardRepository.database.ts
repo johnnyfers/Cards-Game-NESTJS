@@ -31,6 +31,7 @@ export class DatabaseCardRepository implements CardRepository {
 
   async findAll(): Promise<Card[]> {
     const cards = await this.prisma.card.findMany()
+    if (!cards) return
     return cards.map(card => new Card(card))
   }
 
