@@ -15,7 +15,12 @@ import { TranslationAPIGoogleCloud } from 'src/infra/gateways/translateAPI/trans
 import { TranslationAPIModule } from 'src/infra/gateways/translateAPI/translationAPI.module';
 
 @Module({
-  imports: [LoggerModule, RepositoriesModule, ExceptionsModule, TranslationAPIModule],
+  imports: [
+    LoggerModule,
+    RepositoriesModule,
+    ExceptionsModule,
+    TranslationAPIModule,
+  ],
 })
 export class CardUsecasesProxyModule {
   static GET_CARDS_USECASES_PROXY = 'getCardsUsecasesProxy';
@@ -34,22 +39,55 @@ export class CardUsecasesProxyModule {
             new UseCaseProxy(new GetCardsUseCases(cardRepository)),
         },
         {
-          inject: [LoggerService, DatabaseCardRepository, TranslationAPIGoogleCloud],
+          inject: [
+            LoggerService,
+            DatabaseCardRepository,
+            TranslationAPIGoogleCloud,
+          ],
           provide: CardUsecasesProxyModule.POST_CARD_USECASES_PROXY,
-          useFactory: (logger: LoggerService, cardRepository: DatabaseCardRepository, translationAPI: TranslationAPIGoogleCloud) =>
-            new UseCaseProxy(new AddCardUseCases(logger, cardRepository, translationAPI)),
+          useFactory: (
+            logger: LoggerService,
+            cardRepository: DatabaseCardRepository,
+            translationAPI: TranslationAPIGoogleCloud,
+          ) =>
+            new UseCaseProxy(
+              new AddCardUseCases(logger, cardRepository, translationAPI),
+            ),
         },
         {
-          inject: [ExceptionsService ,LoggerService, DatabaseCardRepository, TranslationAPIGoogleCloud],
+          inject: [
+            ExceptionsService,
+            LoggerService,
+            DatabaseCardRepository,
+            TranslationAPIGoogleCloud,
+          ],
           provide: CardUsecasesProxyModule.PUT_CARD_USECASES_PROXY,
-          useFactory: (exception: IException, logger: LoggerService, cardRepository: DatabaseCardRepository, translationAPI: TranslationAPIGoogleCloud) =>
-            new UseCaseProxy(new UpdateCardUseCases(exception, logger, cardRepository, translationAPI)),
+          useFactory: (
+            exception: IException,
+            logger: LoggerService,
+            cardRepository: DatabaseCardRepository,
+            translationAPI: TranslationAPIGoogleCloud,
+          ) =>
+            new UseCaseProxy(
+              new UpdateCardUseCases(
+                exception,
+                logger,
+                cardRepository,
+                translationAPI,
+              ),
+            ),
         },
         {
-          inject: [ExceptionsService,LoggerService, DatabaseCardRepository],
+          inject: [ExceptionsService, LoggerService, DatabaseCardRepository],
           provide: CardUsecasesProxyModule.DELETE_CARD_USECASES_PROXY,
-          useFactory: (exception: IException,logger: LoggerService, cardRepository: DatabaseCardRepository) =>
-            new UseCaseProxy(new DeleteCardUseCases(logger, exception, cardRepository)),
+          useFactory: (
+            exception: IException,
+            logger: LoggerService,
+            cardRepository: DatabaseCardRepository,
+          ) =>
+            new UseCaseProxy(
+              new DeleteCardUseCases(logger, exception, cardRepository),
+            ),
         },
       ],
       exports: [

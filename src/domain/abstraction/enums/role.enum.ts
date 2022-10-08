@@ -1,3 +1,3 @@
 export enum Role {
-    Player = 'PLAYER',
-  }
+  Player = 'PLAYER',
+}

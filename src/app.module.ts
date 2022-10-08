@@ -18,7 +18,7 @@ import { JwtAuthGuard } from './infra/auth/guards/jwtAuth.guard';
     ControllersModule,
     PrismaServiceModule,
     RepositoriesModule,
-    AuthModule
+    AuthModule,
   ],
   controllers: [],
   providers: [
@@ -26,7 +26,7 @@ import { JwtAuthGuard } from './infra/auth/guards/jwtAuth.guard';
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
     },
-    PrismaService]
+    PrismaService,
+  ],
 })
-
-export class AppModule { }
+export class AppModule {}

@@ -1,11 +1,13 @@
-
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { AllExceptionFilter } from './infra/gateways/common/filters/exceptions.filter';
 import { LoggingInterceptor } from './infra/gateways/common/interceptors/logger.interceptor';
-import { ResponseFormat, ResponseInterceptor } from './infra/gateways/common/interceptors/response.interceptor';
+import {
+  ResponseFormat,
+  ResponseInterceptor,
+} from './infra/gateways/common/interceptors/response.interceptor';
 import { LoggerService } from './infra/gateways/logger/logger.service';
 
 async function bootstrap() {

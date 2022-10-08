@@ -14,19 +14,21 @@ import { UseCaseProxy } from 'src/infra/use-case-proxies/useCases-proxy';
 @ApiResponse({ status: 500, description: 'Internal error' })
 @ApiExtraModels(PlayerPresenter)
 export class AuthPlayerController {
-    constructor(
-        @Inject(PlayerUsecasesProxyModule.AUTH_PLAYER_USECASES_PROXY)
-        private readonly authPlayerUsecaseProxy: UseCaseProxy<AuthPlayerUseCase>,
-    ) { }
+  constructor(
+    @Inject(PlayerUsecasesProxyModule.AUTH_PLAYER_USECASES_PROXY)
+    private readonly authPlayerUsecaseProxy: UseCaseProxy<AuthPlayerUseCase>,
+  ) {}
 
-    @IsPublic()
-    @Post('auth')
-    @ApiResponseType(CardPresenter, true)
-    async auth(@Body() { username, password }: AddPlayerDto) {
-        const { player, token } = await this.authPlayerUsecaseProxy.getInstance().execute({ username, password });
-        return {
-            player: new PlayerPresenter(player),
-            token
-        };
-    }
+  @IsPublic()
+  @Post('auth')
+  @ApiResponseType(CardPresenter, true)
+  async auth(@Body() { username, password }: AddPlayerDto) {
+    const { player, token } = await this.authPlayerUsecaseProxy
+      .getInstance()
+      .execute({ username, password });
+    return {
+      player: new PlayerPresenter(player),
+      token,
+    };
+  }
 }

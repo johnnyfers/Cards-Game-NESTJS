@@ -8,11 +8,10 @@ import { UpdateCardController } from './card/updateCard.controller';
 import { AddPlayerController } from './player/addPlayer.controller';
 import { AuthPlayerController } from './player/authPlayer.controller';
 
-
 @Module({
   imports: [
     CardUsecasesProxyModule.register(),
-    PlayerUsecasesProxyModule.register()
+    PlayerUsecasesProxyModule.register(),
   ],
   controllers: [
     AddPlayerController,
@@ -20,7 +19,7 @@ import { AuthPlayerController } from './player/authPlayer.controller';
     UpdateCardController,
     DeleteCardController,
     AddCardController,
-    AuthPlayerController
+    AuthPlayerController,
   ],
 })
 export class ControllersModule {}

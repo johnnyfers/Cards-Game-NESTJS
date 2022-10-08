@@ -1,4 +1,4 @@
-import { Body, Controller,Inject, Post } from '@nestjs/common';
+import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AddPlayerDto } from 'src/app/dto/player.dto';
 import { CardPresenter } from 'src/app/presenters/card.presenter';
@@ -23,7 +23,9 @@ export class AddPlayerController {
   @Post('create')
   @ApiResponseType(CardPresenter, true)
   async addPlayer(@Body() addPlayerDto: AddPlayerDto) {
-    const playerCreated = await this.addPlayerUsecaseProxy.getInstance().execute(addPlayerDto);
+    const playerCreated = await this.addPlayerUsecaseProxy
+      .getInstance()
+      .execute(addPlayerDto);
     return new PlayerPresenter(playerCreated);
   }
 }

@@ -19,15 +19,15 @@ export class CardPresenter {
   player: PlayerProps;
 
   constructor(card: Card) {
-    const cardProps = card.getProps()
-    
-    this.id = cardProps.id
-    this.foil = cardProps.foil
-    this.name = cardProps.name
-    this.language = cardProps.language
-    this.priceBRL = cardProps.priceBRL
-    
-    this.playerId = cardProps.playerId
-    this.player = cardProps?.player
+    const cardProps = card.getProps();
+
+    this.id = cardProps.id;
+    this.foil = cardProps.foil;
+    this.name = cardProps.name;
+    this.language = cardProps.language;
+    this.priceBRL = cardProps.priceBRL;
+
+    this.playerId = cardProps.playerId;
+    this.player = cardProps?.player;
   }
 }

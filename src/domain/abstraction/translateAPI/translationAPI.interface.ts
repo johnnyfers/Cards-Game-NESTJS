@@ -1,3 +1,3 @@
 export interface TranslationAPI {
-    translate(text: string, translateTo: string): Promise<string>
+  translate(text: string, translateTo: string): Promise<string>;
 }

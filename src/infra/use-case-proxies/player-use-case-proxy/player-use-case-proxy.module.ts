@@ -12,7 +12,7 @@ import { RepositoriesModule } from 'src/infra/gateways/repositories/repositories
 import { UseCaseProxy } from '../useCases-proxy';
 
 @Module({
-  imports: [LoggerModule, RepositoriesModule, ExceptionsModule, AuthModule,],
+  imports: [LoggerModule, RepositoriesModule, ExceptionsModule, AuthModule],
 })
 export class PlayerUsecasesProxyModule {
   static POST_PLAYER_USECASES_PROXY = 'postPlayerUsecasesProxy';
@@ -28,12 +28,19 @@ export class PlayerUsecasesProxyModule {
           useFactory: (
             logger: LoggerService,
             exceptions: ExceptionsService,
-            playerRepository: DatabasePlayerRepository
+            playerRepository: DatabasePlayerRepository,
           ) =>
-            new UseCaseProxy(new AddPlayerUseCase(logger, exceptions, playerRepository)),
+            new UseCaseProxy(
+              new AddPlayerUseCase(logger, exceptions, playerRepository),
+            ),
         },
         {
-          inject: [LoggerService, ExceptionsService, DatabasePlayerRepository, JWTAuth],
+          inject: [
+            LoggerService,
+            ExceptionsService,
+            DatabasePlayerRepository,
+            JWTAuth,
+          ],
           provide: PlayerUsecasesProxyModule.AUTH_PLAYER_USECASES_PROXY,
           useFactory: (
             logger: LoggerService,
@@ -41,7 +48,9 @@ export class PlayerUsecasesProxyModule {
             playerRepository: DatabasePlayerRepository,
             jwt: JWTAuth,
           ) =>
-            new UseCaseProxy(new AuthPlayerUseCase(logger, exceptions, playerRepository, jwt)),
+            new UseCaseProxy(
+              new AuthPlayerUseCase(logger, exceptions, playerRepository, jwt),
+            ),
         },
       ],
       exports: [

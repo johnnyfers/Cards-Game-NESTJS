@@ -3,10 +3,9 @@ import { PrismaServiceModule } from '../prisma/prisma-service/prisma-service.mod
 import { DatabaseCardRepository } from './cardRepository.database';
 import { DatabasePlayerRepository } from './playerRepository.database';
 
-
 @Module({
   imports: [PrismaServiceModule],
-    providers: [DatabaseCardRepository, DatabasePlayerRepository],
-    exports: [DatabaseCardRepository, DatabasePlayerRepository],
-  })
-  export class RepositoriesModule {}
+  providers: [DatabaseCardRepository, DatabasePlayerRepository],
+  exports: [DatabaseCardRepository, DatabasePlayerRepository],
+})
+export class RepositoriesModule {}
