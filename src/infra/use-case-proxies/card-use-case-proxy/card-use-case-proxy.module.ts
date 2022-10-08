@@ -11,9 +11,11 @@ import { LoggerService } from 'src/infra/gateways/logger/logger.service';
 import { RepositoriesModule } from 'src/infra/gateways/repositories/repositories.module';
 import { DatabaseCardRepository } from 'src/infra/gateways/repositories/cardRepository.database';
 import { UseCaseProxy } from '../useCases-proxy';
+import { TranslationAPIGoogleCloud } from 'src/infra/gateways/translateAPI/translationAPI.googlecloud';
+import { TranslationAPIModule } from 'src/infra/gateways/translateAPI/translationAPI.module';
 
 @Module({
-  imports: [LoggerModule, RepositoriesModule, ExceptionsModule],
+  imports: [LoggerModule, RepositoriesModule, ExceptionsModule, TranslationAPIModule],
 })
 export class CardUsecasesProxyModule {
   static GET_CARDS_USECASES_PROXY = 'getCardsUsecasesProxy';
@@ -32,16 +34,16 @@ export class CardUsecasesProxyModule {
             new UseCaseProxy(new GetCardsUseCases(cardRepository)),
         },
         {
-          inject: [LoggerService, DatabaseCardRepository],
+          inject: [LoggerService, DatabaseCardRepository, TranslationAPIGoogleCloud],
           provide: CardUsecasesProxyModule.POST_CARD_USECASES_PROXY,
-          useFactory: (logger: LoggerService, cardRepository: DatabaseCardRepository) =>
-            new UseCaseProxy(new AddCardUseCases(logger, cardRepository)),
+          useFactory: (logger: LoggerService, cardRepository: DatabaseCardRepository, translationAPI: TranslationAPIGoogleCloud) =>
+            new UseCaseProxy(new AddCardUseCases(logger, cardRepository, translationAPI)),
         },
         {
-          inject: [ExceptionsService ,LoggerService, DatabaseCardRepository],
+          inject: [ExceptionsService ,LoggerService, DatabaseCardRepository, TranslationAPIGoogleCloud],
           provide: CardUsecasesProxyModule.PUT_CARD_USECASES_PROXY,
-          useFactory: (exception: IException, logger: LoggerService, cardRepository: DatabaseCardRepository) =>
-            new UseCaseProxy(new UpdateCardUseCases(exception, logger, cardRepository)),
+          useFactory: (exception: IException, logger: LoggerService, cardRepository: DatabaseCardRepository, translationAPI: TranslationAPIGoogleCloud) =>
+            new UseCaseProxy(new UpdateCardUseCases(exception, logger, cardRepository, translationAPI)),
         },
         {
           inject: [ExceptionsService,LoggerService, DatabaseCardRepository],
