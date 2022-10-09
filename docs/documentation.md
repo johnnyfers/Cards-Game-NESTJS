@@ -46,4 +46,4 @@ $ yarn test:unit
 
 - Access http://localhost:3000/api/#/ for a complete overview
 
-## Production API URL - https://zappts-card-game.herokuapp.com/ 
+## Production API URL - https://zappts-card-game.herokuapp.com/
