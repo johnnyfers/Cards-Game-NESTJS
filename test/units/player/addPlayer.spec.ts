@@ -19,8 +19,8 @@ describe('AddPlayerUseCase', () => {
 
     it('should be able to create a player', async () => {
         const payload = {
-            username: "new player",
-            password: "new player"
+            username: playerMocked.getProps().username,
+            password: playerMocked.getProps().password
         }
         const player = await addPlayerUseCase.execute(payload)
         const pProps = player.getProps()
@@ -33,7 +33,7 @@ describe('AddPlayerUseCase', () => {
         await playerRepository.insert(playerMocked)
         const payload = {
             username: playerMocked.getProps().username,
-            password: "new player"
+            password: playerMocked.getProps().password
         }
         expect(() => {
             return addPlayerUseCase.execute(payload)

@@ -25,6 +25,7 @@ export class InMemoryCardRepository implements CardRepository {
   async findById(id: string): Promise<Card> {
     return this.cards.find(c => c.getProps().id === id)
   }
+  
   async updateContent(id: string, card: Card): Promise<void> {
     this.cards = this.cards.map(c => {
       if (c.getProps().id !== id) return c
