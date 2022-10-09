@@ -1636,22 +1636,22 @@
     consola "^2.15.0"
     node-fetch "^2.6.1"
 
-"@prisma/client@^3.11.1":
-  version "3.11.1"
-  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-3.11.1.tgz#bde6dec71ae133d04ce1c6658e3d76627a3c6dc7"
-  integrity sha512-B3C7zQG4HbjJzUr2Zg9UVkBJutbqq9/uqkl1S138+keZCubJrwizx3RuIvGwI+s+pm3qbsyNqXiZgL3Ir0fSng==
+"@prisma/client@^4.5.0-integration-engines-4-5-0-6-integration-referential-integrity-to-relation-mode-ce007889ace730267c3faed050f4b34840679042.1":
+  version "4.5.0-integration-engines-4-5-0-6-integration-referential-integrity-to-relation-mode-ce007889ace730267c3faed050f4b34840679042.1"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-4.5.0-integration-engines-4-5-0-6-integration-referential-integrity-to-relation-mode-ce007889ace730267c3faed050f4b34840679042.1.tgz#bfa4f059b0dc45dcc9875f7b513a38a96bf30d7b"
+  integrity sha512-9kXO8Tf6VaPCTK5/RVBtFkON0ICOi4BfH843WczjkitHZQwang5Uzc5rRA0thWFxDmxzEmRDGK3gzbsVBVEizg==
   dependencies:
-    "@prisma/engines-version" "3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9"
+    "@prisma/engines-version" "4.5.0-6.integration-referential-integrity-to-relation-mode-ce007889ace730267c3faed050f4b34840679042"
 
-"@prisma/engines-version@3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9":
-  version "3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9"
-  resolved "https://registry.npmjs.org/@prisma/engines-version/-/engines-version-3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9.tgz"
-  integrity sha512-HkcsDniA4iNb/gi0iuyOJNAM7nD/LwQ0uJm15v360O5dee3TM4lWdSQiTYBMK6FF68ACUItmzSur7oYuUZ2zkQ==
+"@prisma/engines-version@4.5.0-6.integration-referential-integrity-to-relation-mode-ce007889ace730267c3faed050f4b34840679042":
+  version "4.5.0-6.integration-referential-integrity-to-relation-mode-ce007889ace730267c3faed050f4b34840679042"
+  resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-4.5.0-6.integration-referential-integrity-to-relation-mode-ce007889ace730267c3faed050f4b34840679042.tgz#b847301e079c24eb7a02b3ee255f5101ba0d360f"
+  integrity sha512-pZ2uqzdA0LxeLpWwKgTQsfjxJuL6kJNeEtjez3muq8bsuEYDF5ZPZlsw3gHxf9mkobuUQe2w58Rj86b56yPIcw==
 
-"@prisma/engines@3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9":
-  version "3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9"
-  resolved "https://registry.npmjs.org/@prisma/engines/-/engines-3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9.tgz"
-  integrity sha512-MILbsGnvmnhCbFGa2/iSnsyGyazU3afzD7ldjCIeLIGKkNBMSZgA2IvpYsAXl+6qFHKGrS3B2otKfV31dwMSQw==
+"@prisma/engines@4.5.0-dev.17":
+  version "4.5.0-dev.17"
+  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-4.5.0-dev.17.tgz#d03f08dbbfd704270c202595ffc41c8c1598307a"
+  integrity sha512-ZPQmOAXMaohOPbA44sU2krbfhnRjPazD8ttX1W5rmSIg0HP43rjBbrmtJytU3j13jTVTXhwGSWz1R/mP3sGJlA==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -6100,12 +6100,12 @@ pretty-format@^27.0.0, pretty-format@^27.5.1:
     ansi-styles "^5.0.0"
     react-is "^17.0.1"
 
-prisma@^3.11.1:
-  version "3.11.1"
-  resolved "https://registry.npmjs.org/prisma/-/prisma-3.11.1.tgz"
-  integrity sha512-aYn8bQwt1xwR2oSsVNHT4PXU7EhsThIwmpNB/MNUaaMx5OPLTro6VdNJe/sJssXFLxhamfWeMjwmpXjljo6xkg==
+prisma@^4.5.0-dev.17:
+  version "4.5.0-dev.17"
+  resolved "https://registry.yarnpkg.com/prisma/-/prisma-4.5.0-dev.17.tgz#692d304f07d5c83be42ff346c945323b7d208c06"
+  integrity sha512-XkZVpz0RkwPSNBFJTmI3TyIMFyzey6xclaIjxu/ehlo6fwEE6QP4rWqkgU4dobFwBbcNUZgO18HSq7THZ+u3qA==
   dependencies:
-    "@prisma/engines" "3.11.1-1.1a2506facaf1a4727b7c26850735e88ec779dee9"
+    "@prisma/engines" "4.5.0-dev.17"
 
 process-nextick-args@~2.0.0:
   version "2.0.1"
