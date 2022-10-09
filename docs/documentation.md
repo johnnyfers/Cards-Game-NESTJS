@@ -41,7 +41,7 @@ $ yarn test:unit
 - POST :: card/create [Creates a card]
 - PUT :: card/update [Updates a card]
 - DELETE :: card/delete [Deletes a card]
-- GET :: card/list [List all player's cards/List all player's cards by given name]
+- GET :: card/list [List all player's cards] - card/list?name=any [List all player's cards by given name]
 
 
 - Access http://localhost:3000/api/#/ for a complete overview
