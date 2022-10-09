@@ -26,7 +26,7 @@ export class GetCardsController {
   ) {
     const cards = await this.getAllCardUsecaseProxy
       .getInstance()
-      .execute(name, player.id);
+      .execute(player.id, name);
     return cards.map((card) => new CardPresenter(card));
   }
 }
