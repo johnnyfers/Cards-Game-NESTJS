@@ -1,6 +1,7 @@
 import { IException } from 'src/domain/abstraction/expections/exceptions.interface';
 import { ILogger } from 'src/domain/abstraction/logger/logger.interface';
 import { CardRepository } from 'src/domain/abstraction/repositories/cardRepository.interface';
+import { CardInvariant } from 'src/domain/services/invariants/cardInvariant';
 
 export class DeleteCardUseCases {
   constructor(
@@ -11,15 +12,9 @@ export class DeleteCardUseCases {
 
   async execute(id: string, playerId: string) {
     const cardExists = await this.cardRepository.findById(id);
-    if (!cardExists) {
-      throw this.exception.badRequestException({
-        message: 'Card not found',
-      });
-    }
-    const { playerId: cardPlayerId } = cardExists.getProps();
-    if (cardPlayerId !== playerId) {
-      throw this.exception.forbiddenException();
-    }
+    const cardInvariant = new CardInvariant(this.exception)
+    cardInvariant.handle(cardExists, playerId)
+    
     await this.cardRepository.deleteById(id);
     this.logger.log(
       'deleteCardUseCases execute',

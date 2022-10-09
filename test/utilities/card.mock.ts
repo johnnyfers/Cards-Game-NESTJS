@@ -2,7 +2,7 @@ import { randomBytes } from 'crypto';
 import { Card } from "src/domain/entity/card.entity"
 import { playerMocked, playerMocked2 } from "test/utilities/player.mock"
 
-export const cardsMocked = []
+export const cardsMocked: Card[] = []
 
 for (let i = 0; i < 10; i++) {
     cardsMocked.push(new Card({

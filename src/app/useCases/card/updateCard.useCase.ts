@@ -4,6 +4,7 @@ import { IException } from 'src/domain/abstraction/expections/exceptions.interfa
 import { ILogger } from 'src/domain/abstraction/logger/logger.interface';
 import { CardRepository } from 'src/domain/abstraction/repositories/cardRepository.interface';
 import { TranslationAPI } from 'src/domain/abstraction/translateAPI/translationAPI.interface';
+import { CardInvariant } from 'src/domain/services/invariants/cardInvariant';
 
 export class UpdateCardUseCases {
   constructor(
@@ -19,7 +20,8 @@ export class UpdateCardUseCases {
     playerId: string,
   ): Promise<void> {
     const card = await this.cardRepository.findById(id);
-    this.cardInvariant(card, playerId)
+    const cardInvariant = new CardInvariant(this.exception)
+    cardInvariant.handle(card, playerId)
     let translatedName: string = card.getProps().name;
     if (updateCardDto?.name) {
       translatedName = await this.translationAPI.translate(
@@ -37,18 +39,5 @@ export class UpdateCardUseCases {
       'updateCardUseCases execute',
       `Card ${id} have been updated`,
     );
-  }
-
-  cardInvariant(card: Card, playerId: string): void {
-    if (!card)
-      throw this.exception.badRequestException({
-        message: 'Card not found',
-      });
-    const { playerId: cardPlayerId } = card.getProps();
-    if (cardPlayerId !== playerId) {
-      throw this.exception.forbiddenException({
-        message: 'You cant see this card'
-      });
-    }
   }
 }
