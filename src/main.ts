@@ -19,19 +19,19 @@ async function bootstrap() {
   app.useGlobalInterceptors(new LoggingInterceptor(new LoggerService()));
   app.useGlobalInterceptors(new ResponseInterceptor());
 
-  if (env !== 'production') {
-    const config = new DocumentBuilder()
-      .addBearerAuth()
-      .setTitle('Cards Nestjs')
-      .setDescription('Example with card list')
-      .setVersion('1.0')
-      .build();
-    const document = SwaggerModule.createDocument(app, config, {
-      extraModels: [ResponseFormat],
-      deepScanRoutes: true,
-    });
-    SwaggerModule.setup('api', app, document);
-  }
+
+  const config = new DocumentBuilder()
+    .addBearerAuth()
+    .setTitle('Cards Nestjs')
+    .setDescription('Example with card list')
+    .setVersion('1.0')
+    .build();
+  const document = SwaggerModule.createDocument(app, config, {
+    extraModels: [ResponseFormat],
+    deepScanRoutes: true,
+  });
+  SwaggerModule.setup('api', app, document);
+
   app.enableCors();
   await app.listen(process.env.PORT || 3000);
 }
