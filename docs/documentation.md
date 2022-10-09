@@ -31,7 +31,7 @@ $ yarn test:unit
 
 - Import Insomnia_2022-10-08.json file into your Insomnia app
 
-## Endpoints - http://localhost:3000/api/#/
+## Endpoints - /api/#/
 
 ### Player
 - POST :: player/create [Creates a player]
@@ -45,3 +45,5 @@ $ yarn test:unit
 
 
 - Access http://localhost:3000/api/#/ for a complete overview
+
+## Production API URL - https://zappts-card-game.herokuapp.com/ 
