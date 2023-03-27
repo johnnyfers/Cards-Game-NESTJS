@@ -24,7 +24,22 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+You must store the following information: card name, edition, language (English, Portuguese, or Japanese), whether it is foil or not, the price of the card (in Brazilian reais), and how many cards with those characteristics the player has.
+
+The card name must always be stored in Portuguese, regardless of the language of the card. (Note that it is possible to have cards with the same names but with different characteristics.)
+
+When reading a card by its name, the API should return all registrations related to that name (all languages, all foil or not, and their respective quantities).
+
+[REQUIREMENTS]
+
+The player can:
+Store a new card;
+Read a specific card given its name;
+Read all listed cards;
+Delete a card and update its value and/or the quantity of cards the player has with those characteristics.
+When bringing any list of cards (whether searching by name or reading all), the cards must come sorted by value (from highest to lowest).
+
+Each player can only view and update their own cards that they have inserted.
 
 ## Installation
 
