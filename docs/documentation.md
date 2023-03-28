@@ -44,6 +44,4 @@ $ yarn test:unit
 - GET :: card/list [List all player's cards] - card/list?name=any [List all player's cards by given name]
 
 
-- Access http://localhost:3000/api/#/ (LOCAL) or  https://zappts-card-game.herokuapp.com/api/#/ (PROD) to access *SWAGGER DOCUMENTATION*
-
-## Production API URL - https://zappts-card-game.herokuapp.com/
+- Access http://localhost:3000/api/#/ (LOCAL) to access *SWAGGER DOCUMENTATION*
